@@ -1,6 +1,8 @@
 'use strict'
 
-const _ = require('lodash');
+import _ from 'lodash';
+import validate from '../../../../lib/validate';
+import VError from 'verror';
 
 function MemoryCache () {
   let cache = {};
@@ -10,12 +12,16 @@ function MemoryCache () {
   }
 
   function increment(key, amount) {
-    if (!_.isString(key)) {
-      throw new Error(`You have to use string for key, got ${key}`);
-    }
-    if (!_.isFinite(amount)) {
-      throw new Error(`Can not increment key "${key}" with not a number value: ${amount}`);
-    }
+    validate.string(
+      key,
+      new VError(`[Cache] You have to use string as a key, got "${key}" (${typeof key})`)
+    );
+    validate.number(
+      amount,
+      new VError(
+        `[Cache] Can not increment key "${key}" with not a number value: ${amount}`
+      )
+    );
     _.set(cache, key, get(key, 0) + amount);
   }
 
