@@ -1,5 +1,7 @@
 'use strict';
-const Redis = require("ioredis");
+import Redis from 'ioredis';
+import validate from '../../../../lib/validate';
+import VError from 'verror';
 
 function RedisCache() {
   const redis = new Redis();
@@ -10,6 +12,16 @@ function RedisCache() {
   }
 
   async function increment(key, amount) {
+    validate.string(
+      key,
+      new VError(`[Cache] You have to use string as a key, got "${key}" (${typeof key})`)
+    );
+    validate.number(
+      amount,
+      new VError(
+        `[Cache] Can not increment key "${key}" with not a number value: ${amount}`
+      )
+    );
     await redis.incrby(key, amount);
   }
 
