@@ -1,6 +1,6 @@
 'use strict';
 import Redis from 'ioredis';
-import validate from '../../../../lib/validate';
+import validate from '../../../lib/validate';
 import VError from 'verror';
 
 function RedisCache() {

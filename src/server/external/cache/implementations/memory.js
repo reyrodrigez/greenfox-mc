@@ -1,7 +1,7 @@
 'use strict'
 
 import _ from 'lodash';
-import validate from '../../../../lib/validate';
+import validate from '../../../lib/validate';
 import VError from 'verror';
 
 function MemoryCache () {
