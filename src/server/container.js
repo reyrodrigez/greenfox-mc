@@ -6,5 +6,6 @@ di.registerModule(require('lab-config'), 'config');
 di.registerModule(require('lab-config/implementations/memory'), 'config-memory');
 
 diTools.registerDir(path.resolve(__dirname, 'external'));
+diTools.registerDir(path.resolve(__dirname, 'internal'));
 
 export default di;
