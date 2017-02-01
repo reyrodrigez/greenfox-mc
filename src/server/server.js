@@ -1,5 +1,6 @@
 import di from './container';
 
+require('dotenv').config()
 const path = require('path');
 require("babel-core/register");
 require("babel-polyfill");
