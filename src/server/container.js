@@ -8,5 +8,6 @@ di.registerModule(require('lab-config/implementations/file'), 'config-file');
 
 diTools.registerDir(path.resolve(__dirname, 'external'));
 diTools.registerDir(path.resolve(__dirname, 'internal'));
+diTools.registerDir(path.resolve(__dirname, 'schema'));
 
 export default di;
