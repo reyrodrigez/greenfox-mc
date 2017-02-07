@@ -71,6 +71,7 @@
     "dotenv": "4.0.0",
     "express": "4.14.0",
     "firebase": "3.6.1",
+    "graphql": "0.9.1",
     "ioredis": "2.5.0",
     "lab-config": "github:lab-coop/lab-config",
     "lab-di": "github:lab-coop/lab-di",
