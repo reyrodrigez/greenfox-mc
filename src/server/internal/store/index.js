@@ -2,16 +2,17 @@ import { graphql } from 'graphql';
 
 function Store(container){
   function Schema(schema) {
-    async function query(query) {
-      return await graphql(schema, query);
+    async function query(query, params) {
+      return await graphql(schema, query, '', undefined, params);
     }
     return Object.freeze({
       query
     });
   }
 
-  function getSchema(name) {
-    return Schema(container.get(name));
+  async function getSchema(name) {
+    const schema = await container.get(name)
+    return Schema(schema);
   }
 
   return Object.freeze({
