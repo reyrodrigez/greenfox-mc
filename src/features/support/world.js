@@ -18,8 +18,11 @@ function World() {
 }
 
 function setupConfig(config) {
-  //config.update('service', 'memory');
   config.update('cache', 'memory');
+  config.update('mongo', {
+    type: 'memory',
+    url: 'mongodb://localhost:27017/test'
+  });
 }
 
 function extendContainer() {
