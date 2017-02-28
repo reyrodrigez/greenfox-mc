@@ -26,10 +26,21 @@ function RequestMonitor(cache, store) {
     }
   }
 
+  async function recalculate() {
+    await cache.flushAll();
+    const requests = await getRequests();
+    await Promise.all(
+      requests.map(async () => {
+        await cache.increment('totalIncomingRequests', 1);
+      })
+    );
+  }
+
   return Object.freeze({
     registerIncomingRequest,
     getStatistics,
-    getRequests
+    getRequests,
+    recalculate
   });
 }
 
