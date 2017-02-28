@@ -4,9 +4,8 @@ function RecalcRequests(cache, requestmonitor) {
 
     async function recalculate() {
         const requests = await requestmonitor.getRequests();
-        await cache.deleteKey(DB_KEY).then( () => {
-            cache.increment(DB_KEY, requests.length);
-        });
+        await cache.deleteKey(DB_KEY);
+        cache.increment(DB_KEY, requests.length);
     }
 
     return Object.freeze({
