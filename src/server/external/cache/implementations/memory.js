@@ -29,10 +29,15 @@ function MemoryCache () {
     cache = {};
   }
 
+  async function deleteKey(key) {
+    await delete cache[key];
+  }
+
   return Object.freeze({
     get: get,
     increment,
-    flushAll
+    flushAll,
+    deleteKey
   });
 }
 

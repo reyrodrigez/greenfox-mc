@@ -29,10 +29,15 @@ function RedisCache() {
     await redis.flushall();
   }
 
+  async function deleteKey(key) {
+    await redis.del[key];
+  }
+
   return Object.freeze({
     get: get,
     increment,
-    flushAll
+    flushAll,
+    deleteKey
   });
 }
 
