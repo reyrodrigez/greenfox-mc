@@ -13,7 +13,8 @@
     "test:feature": "SUPPRESS_NO_CONFIG_WARNING=true ./node_modules/cucumber/bin/cucumber.js ./src/features --compiler es6:babel-core/register --require ./src/features/support/testSetup.js --require ./src/features",
     "start": "PUBLIC_DIR='../client/public' nodemon src/server/server.js --ignore dist --ignore node_modules --exec babel-node",
     "build-web": "webpack",
-    "serve": "PUBLIC_DIR='./public' node dist/server.js"
+    "serve": "PUBLIC_DIR='./public' node dist/server.js",
+    "recalculateRequests": "LAB_CONFIG=file node_modules/babel-cli/bin/babel-node.js ./src/server/recalculateRequests.js"
   },
   "jest": {
     "testRegex": ".*\\.test\\.js$"
