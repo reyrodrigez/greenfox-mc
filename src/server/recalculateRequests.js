@@ -1,5 +1,13 @@
 import container from './container';
 
-const recalculateRequests = container.get('recalculaterequests');
+require("babel-core/register");
+require("babel-polyfill");
 
-recalculateRequests.recalculate();
+const recalculateRequests = container.get('recalcrequests');
+
+async function recalculate() {
+    await recalculateRequests.recalculate();
+    process.exit();
+}
+
+recalculate();

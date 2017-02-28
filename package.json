@@ -14,7 +14,7 @@
     "start": "PUBLIC_DIR='../client/public' nodemon src/server/server.js --ignore dist --ignore node_modules --exec babel-node",
     "build-web": "webpack",
     "serve": "PUBLIC_DIR='./public' node dist/server.js",
-    "recalculateRequests": "node dist/recalculateRequests.js"
+    "recalculateRequests": "LAB_CONFIG=file node_modules/babel-cli/bin/babel-node.js ./src/server/recalculateRequests.js"
   },
   "jest": {
     "testRegex": ".*\\.test\\.js$"
