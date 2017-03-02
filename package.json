@@ -23,6 +23,7 @@
       "patterns": [
         "**"
       ],
+      "quiet": true,
       "extensions": [
         "js",
         "json",
