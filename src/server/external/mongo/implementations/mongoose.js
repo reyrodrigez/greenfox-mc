@@ -1,6 +1,6 @@
 'use strict';
 
-const mockgoose = require('mockgoose');
+const mongoose = require('mongoose');
 
 function Mongoose(config) {
   return mongoose.connect(config.get('mongo').url).then(() => mongoose);
