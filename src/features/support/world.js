@@ -13,8 +13,9 @@ function World() {
   this.tools = tools;
   this.container = require('../../client/container');
   this.server = require('../../server/container');
-  extendContainer.call(this);
+  setupConfig(this.server.default.get('config'));
   setupConfig(this.container.get('config'));
+  extendContainer.call(this);
 }
 
 function setupConfig(config) {
@@ -23,6 +24,7 @@ function setupConfig(config) {
     type: 'memory',
     url: 'mongodb://localhost:27017/test'
   });
+  config.update('queue', 'memory');
 }
 
 function extendContainer() {

@@ -10,6 +10,9 @@ export default function () {
     const mongo = this.container.get('mongo');
     const database  = await mongo.getConnection();
     await database.connection.db.dropDatabase();
+
+    const queue = this.container.get('queue');
+    await queue.remove('test-queue');
   });
 
 }
