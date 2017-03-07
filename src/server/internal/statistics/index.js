@@ -1,4 +1,5 @@
 const QUEUE_NAME = "incomingRequest";
+const CACHE_NAME = "totalIncomingRequests";
 
 function Statistics(cache, queue) {
 
@@ -7,7 +8,7 @@ function Statistics(cache, queue) {
   }
 
   async function processMessage(message) {
-    await cache.increment('totalIncomingRequests', 1);
+    await cache.increment(CACHE_NAME, 1);
   }
 
   async function recalculate() {
