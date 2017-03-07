@@ -1,0 +1,7 @@
+{
+  "cache": "memory",
+  "mongo": {
+    "type": "memory"
+  },
+  "queue": "memory"
+}
