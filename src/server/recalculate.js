@@ -1,14 +1,14 @@
 import container from './container';
 import VError from 'verror';
 
-const requestMonitor = container.get('requestmonitor');
+const statistics = container.get('statistics');
 
 async function recalculate() {
   await requestMonitor.registerIncomingRequest('url');
   await requestMonitor.registerIncomingRequest('url');
   await requestMonitor.registerIncomingRequest('url');
 
-  await requestMonitor.recalculate();
+  await statistics.recalculate();
   console.log(await requestMonitor.getStatistics());
 }
 

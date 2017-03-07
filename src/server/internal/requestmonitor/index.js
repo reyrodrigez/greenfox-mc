@@ -1,9 +1,12 @@
+const QUEUE_NAME = "incomingRequest";
+const CACHE_NAME = "totalIncomingRequests";
 
-function RequestMonitor(cache, store) {
+function RequestMonitor(cache, store, queue) {
 
-  async function registerIncomingRequest(url, params, time) {
+  async function registerIncomingRequest(req) {
+    const now = Date.now();
+    const url = req.url;
     const request = await store.getSchema('Request');
-    await cache.increment('totalIncomingRequests', 1);
     await request.query(
       `mutation Mutation($url: String!) {
         registerRequest(url: $url) {
@@ -12,6 +15,7 @@ function RequestMonitor(cache, store) {
       }`,
       {url}
     );
+    queue.publish(QUEUE_NAME, { "url" : req.url, "params": req.query, "time": now });
   }
 
   async function getRequests() {
@@ -22,28 +26,17 @@ function RequestMonitor(cache, store) {
 
   async function getStatistics() {
     return {
-      totalIncomingRequests: await cache.get('totalIncomingRequests')
+      totalIncomingRequests: await cache.get(CACHE_NAME)
     }
-  }
-
-  async function recalculate() {
-    await cache.flushAll();
-    const requests = await getRequests();
-    await Promise.all(
-      requests.map(async () => {
-        await cache.increment('totalIncomingRequests', 1);
-      })
-    );
   }
 
   return Object.freeze({
     registerIncomingRequest,
-    getStatistics,
     getRequests,
-    recalculate
+    getStatistics
   });
 }
 
-RequestMonitor.deps = ['cache', 'store'];
+RequestMonitor.deps = ['cache', 'store', 'queue'];
 
 module.exports = RequestMonitor;

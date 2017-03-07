@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(async (req, res, next) => {
     const monitor = container.get('requestmonitor');
-    await monitor.registerIncomingRequest();
+    await monitor.registerIncomingRequest(req);
     next();
   }
 );
