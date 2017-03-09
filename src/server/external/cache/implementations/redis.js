@@ -8,7 +8,7 @@ function RedisCache() {
 
   async function get(key, defaultValue) {
     const result = await redis.get(key);
-    return Promise.resolve(parseInt(result));
+    return parseInt(result);
   }
 
   async function increment(key, amount) {

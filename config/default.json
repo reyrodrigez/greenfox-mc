@@ -1,0 +1,7 @@
+{
+  "cache": "redis",
+  "mongo": {
+  	"type": "memory"
+  },
+  "queue": "amqp"
+}
